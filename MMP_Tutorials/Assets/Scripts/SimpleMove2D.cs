@@ -13,11 +13,7 @@ public class SimpleMove2D : MonoBehaviour
     float moveSpeed;
 
 
-    void OnMouseDown()
-    {
-        startLocation = army.transform.position;
-        destination = new Vector3(MoveTowards(startLocation, finalLocation, moveSpeed));
-    }
+   
 
 
 
@@ -42,10 +38,6 @@ public class SimpleMove2D : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
-
-
-      
-
         
        // moveY = Input.GetAxisRaw("Vertical");
 
@@ -58,10 +50,7 @@ public class SimpleMove2D : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        
-    }
+    
     private void FixedUpdate()
     {
         // rb.AddForce(movement * speed * Time.deltaTime);

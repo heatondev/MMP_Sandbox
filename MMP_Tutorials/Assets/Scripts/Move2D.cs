@@ -16,6 +16,12 @@ public class Move2D : MonoBehaviour
 
     bool isGrounded;
 
+    public AudioSource audio;
+    
+  
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +31,10 @@ public class Move2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+   
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+    
+     
     }
 
     
@@ -37,6 +46,7 @@ public class Move2D : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveX = context.ReadValue<Vector2>().x;
+       
     }
 
     public void Jump(InputAction.CallbackContext context)
