@@ -16,7 +16,7 @@ public class Move2D : MonoBehaviour
 
     bool isGrounded;
 
-    public AudioSource audio;
+    public AudioSource audioSource;
     
   
 

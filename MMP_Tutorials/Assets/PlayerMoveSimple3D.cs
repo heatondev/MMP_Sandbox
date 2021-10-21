@@ -6,6 +6,9 @@ public class PlayerMoveSimple3D : MonoBehaviour
 {
     CharacterController character;
 
+    public AudioSource menuSound;
+    public AudioClip myClip;
+
     float moveX;
     float moveZ;
 
@@ -27,6 +30,19 @@ public class PlayerMoveSimple3D : MonoBehaviour
         moveZ = Input.GetAxisRaw("Vertical");
 
         movement = new Vector3(moveX, 0.0f, moveZ);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            menuSound.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            menuSound.PlayOneShot(myClip);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            menuSound.Stop();
+        }
     }
     void handlegravity()
     {
@@ -46,4 +62,14 @@ public class PlayerMoveSimple3D : MonoBehaviour
     {
         character.Move(movement * speed*Time.deltaTime);
     }
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Collided");
+            menuSound.Play();
+        }
+    }
+
 }
