@@ -65,11 +65,10 @@ public class PlayerMoveSimple3D : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Collided");
+        Debug.Log("Collision");
             menuSound.Play();
-        }
+       // Destroy(collision.gameObject);
+        
     }
 
 }

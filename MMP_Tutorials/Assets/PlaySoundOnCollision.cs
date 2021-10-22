@@ -12,10 +12,19 @@ public class PlaySoundOnCollision : MonoBehaviour
         audioSource = GetComponent<AudioSource>();  
     }
 
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
         audioSource.Play();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            audioSource.Play();
+            Destroy(this.gameObject);
+        }
     }
 }
