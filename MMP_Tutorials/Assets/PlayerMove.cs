@@ -54,7 +54,9 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("Jump pressed");
         if (_character.isGrounded)
         {
-        currentMovement.y += jumpHeight;
+            //currentMovement.y += jumpHeight;
+            currentMovement = new Vector3(0, jumpHeight, 0);
+            
         }
         
     }
