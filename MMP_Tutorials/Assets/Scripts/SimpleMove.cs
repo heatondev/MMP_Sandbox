@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SimpleMove : MonoBehaviour
 {
+    //Movement
     Vector3 moveDirection;
     float moveX;
     float moveZ;
+       public float speed;
 
-    public float speed;
+    //Turning
+
+
+        //Jumping and Gravity
+
 
     CharacterController cc;
 
@@ -22,14 +28,18 @@ public class SimpleMove : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
-        Debug.Log(moveX);
         moveZ = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(moveX, 0, moveZ).normalized;
 
-        moveDirection = new Vector3(moveX, 0.0f, moveZ).normalized;
+        if(direction.magnitude > 0.1f)
+        {
+
+        }
+
     }
 
     private void FixedUpdate()
     {
-        cc.Move(moveDirection * Time.deltaTime * speed);
+        
     }
 }
