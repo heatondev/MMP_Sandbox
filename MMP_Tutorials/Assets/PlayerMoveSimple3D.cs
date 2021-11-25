@@ -16,6 +16,7 @@ public class PlayerMoveSimple3D : MonoBehaviour
 
     public float speed = 5;
     public float gravityValue;
+    public float jumpHeight = 10f;
     
     void Start()
     {
@@ -31,18 +32,7 @@ public class PlayerMoveSimple3D : MonoBehaviour
 
         movement = new Vector3(moveX, 0.0f, moveZ);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            menuSound.Play();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            menuSound.PlayOneShot(myClip);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            menuSound.Stop();
-        }
+       
     }
     void handlegravity()
     {
