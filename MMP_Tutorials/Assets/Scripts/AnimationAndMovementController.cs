@@ -27,7 +27,7 @@ public class AnimationAndMovementController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        cc.detectCollisions = true;
+       // cc.detectCollisions = true;
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
