@@ -11,6 +11,11 @@ public class AnimationAndMovementController : MonoBehaviour
     Vector3 currentRunMovement;
     bool isMovementPressed;
     bool isRunPressed;
+    bool isPunchPressed;
+    bool isPunchReleased;
+    [SerializeField]
+    GameObject hitbox;
+
     Animator animator;
 
     int isRunningHash;
@@ -27,7 +32,7 @@ public class AnimationAndMovementController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
-        cc.detectCollisions = true;
+       // cc.detectCollisions = true;
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
@@ -37,6 +42,9 @@ public class AnimationAndMovementController : MonoBehaviour
         playerActions.CharacterControls.Move.performed += onMovementInput;
         playerActions.CharacterControls.Run.started += onRun;
         playerActions.CharacterControls.Run.canceled += onRun;
+
+        playerActions.CharacterControls.Punch.started += onPunch;
+        playerActions.CharacterControls.Punch.canceled += onPunchReleased;
     }
 
     void onMovementInput(InputAction.CallbackContext context)
@@ -48,7 +56,17 @@ public class AnimationAndMovementController : MonoBehaviour
             currentRunMovement.z = currentMovementInput.y * runSpeed;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
     }
+    void onPunch(InputAction.CallbackContext context)
+    {
+        isPunchPressed = context.ReadValueAsButton();
+        
+        
+    }
 
+    void onPunchReleased(InputAction.CallbackContext context)
+    {
+        isPunchReleased = context.ReadValueAsButton();
+    }
     void onRun(InputAction.CallbackContext context)
     {
         isRunPressed = context.ReadValueAsButton();
@@ -119,7 +137,16 @@ public class AnimationAndMovementController : MonoBehaviour
         handleAnimation();
         handleRotation();
         handleGravity();
-
+        if (isPunchPressed)
+        {
+            Debug.Log("Punch Pressed");
+            hitbox.active = true;
+        }
+        if (isPunchReleased)
+        {
+            Debug.Log("Punch ended");
+            hitbox.active = false;
+        }
     }
 
     void OnEnable()
