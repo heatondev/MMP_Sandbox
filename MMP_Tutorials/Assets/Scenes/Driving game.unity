@@ -543,6 +543,7 @@ MonoBehaviour:
   forwardSpeed: 100
   reverseSpeed: 50
   turnSpeed: 150
+  boostAmount: 300
   airDrag: 0.1
   groundDrag: 4
   groundLayer:

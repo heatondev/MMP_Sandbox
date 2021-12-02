@@ -5,17 +5,27 @@ using UnityEngine;
 public class Punch : MonoBehaviour
 {
     public AudioSource audio;
-    private void OnCollisionEnter(Collision collision)
+
+    public Transform hitbox;
+    public float hitRadius;
+    public LayerMask rocks;
+
+    private void Update()
     {
-        if (collision.gameObject.tag == "Rock")
+        if (Input.GetKeyDown(KeyCode.G))
         {
-        Debug.Log("Punched");
-             if (!audio.isPlaying)
-            {
-             audio.Play();
-            }
-            Destroy(collision.gameObject);
+            PunchObject(hitbox.position, hitRadius);
         }
-       
     }
+
+    void PunchObject(Vector3 hit, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(hit, radius, rocks);
+        foreach (var hitCollider in hitColliders)
+        {
+            audio.Play();
+            Destroy(hitCollider.gameObject);
+        }
+    }
+    
 }

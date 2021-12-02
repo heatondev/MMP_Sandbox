@@ -20,12 +20,23 @@ public class CarController : MonoBehaviour
     public float reverseSpeed;
 
     public float turnSpeed;
+    bool isBoostPressed;
+    public float boostAmount = 5f;
 
     public float airDrag;
     public float groundDrag;
 
     bool isCarGrounded;
     public LayerMask groundLayer;
+
+    private void Awake()
+    {
+        playerInput = new InputActions();
+
+        playerInput.Player.Jump.started += OnJump;
+       playerInput.Player.Jump.canceled += OnJump;
+
+    }
     void Start()
     {
         sphereRB.transform.parent = null; 
@@ -36,9 +47,23 @@ public class CarController : MonoBehaviour
         currentMovement.x = movementVector.x;
         currentMovement.z = movementVector.y;
     }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        isBoostPressed = context.ReadValueAsButton();
+        
+    }
     // Update is called once per frame
     void Update()
     {
+        if (isBoostPressed)
+        {
+            forwardSpeed = boostAmount;
+
+        }
+        else {forwardSpeed = 100f; }
+
+        
         moveInput = currentMovement.z;
         moveInput *= moveInput > 0 ? forwardSpeed : reverseSpeed;
 
@@ -76,8 +101,12 @@ public class CarController : MonoBehaviour
             sphereRB.AddForce(transform.up * -20f);
         }
     }
-    private void OnMove()
+    private void OnEnable()
     {
-        
+        playerInput.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        playerInput.Player.Disable();
     }
 }

@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 250704034}
   - component: {fileID: 250704033}
   - component: {fileID: 250704036}
-  - component: {fileID: 250704037}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -332,19 +331,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &250704037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250704031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5cfc37ade97e14ab8006cf8de93ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 1972682621}
 --- !u!1 &507660472
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +397,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMagnitude: 1
+--- !u!114 &522993979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522993977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5cfc37ade97e14ab8006cf8de93ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 1972682621}
+  hitbox: {fileID: 250704032}
+  hitRadius: 0.25
+  rocks:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &522993980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +860,7 @@ GameObject:
   - component: {fileID: 1221966551}
   - component: {fileID: 1221966550}
   - component: {fileID: 1221966554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Rock
   m_Icon: {fileID: 0}
